@@ -3,9 +3,9 @@
 const API_URL = 'https://pixabay.com/api/';
 const API_KEY = '42512017-1bddfdd3afd2851258a10c68c';
 
-function fetchImg(userRequest) {
+function fetchImg(userRequest, per_page = 9) {
   return fetch(
-    `${API_URL}?key=${API_KEY}&q=${userRequest}&image_type=photo&orientation=horizontal&safesearch=true`
+    `${API_URL}?key=${API_KEY}&q=${userRequest}&image_type=photo&orientation=horizontal&safesearch=true&per_page=${per_page}`
   ).then(res => res.json());
 }
 

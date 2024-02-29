@@ -22,7 +22,7 @@ form.addEventListener('submit', searchForm);
 //listen form field value and put vatue to the fetchImg()
 function searchForm(evt) {
   evt.preventDefault();
-
+  loader.style.display = 'block';
   const inputValue = evt.currentTarget.elements['js-input'].value;
   if (!inputValue) {
     btn.disabled = true;
@@ -40,7 +40,6 @@ function searchForm(evt) {
           });
         } else {
           //clear
-          loader.style.display = 'block';
           imgList.innerHTML = '';
           imgList.insertAdjacentHTML('beforeend', createMarkup(res.hits));
         }
@@ -68,7 +67,7 @@ function createMarkup(images) {
         return `<li class="gallery__item">
         <div class="gallery__card">
           <a href="${largeImageURL}" class="gallery-card__link"
-            ><img src="${webformatURL}" alt="${tags}" class="gallery-card_image"
+            ><img src="${webformatURL}" alt="${tags}" class="gallery-card__image"
           /></a>
           <div class="gallery-card__description">
             <p class="gallery-card__text">Likes <span>${likes}</span></p>
