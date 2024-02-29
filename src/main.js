@@ -37,6 +37,7 @@ function searchForm(evt) {
           iziToast.show({
             message:
               'Sorry, there are no images matching your search query. Please try again!',
+            backgroundColor: 'rgb(239, 64, 64)',
           });
         } else {
           //clear
