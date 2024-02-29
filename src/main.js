@@ -92,7 +92,7 @@ imgList.addEventListener('click', function (evt) {
     captionsData: 'alt',
     captionDelay: 250,
   });
-  simpleLightbox.open();
+  gallerySimple.open();
 });
 
 // imgList.addEventListener('load', addLoader);
