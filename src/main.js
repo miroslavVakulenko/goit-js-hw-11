@@ -5,7 +5,6 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 import { fetchImg } from './js/pixabay-api';
-import simpleLightbox from 'simplelightbox';
 
 // fetchImg()
 //   .then(res => console.log(res))
@@ -30,9 +29,9 @@ function searchForm(evt) {
       message: 'Please, enter the value!',
     });
   } else {
-    fetchImg(inputValue)
+    fetchImg(inputValue, page)
       .then(res => {
-        //if img not find show alert
+        // if img not find show alert
         if (res.total === 0) {
           iziToast.show({
             message:
@@ -40,7 +39,7 @@ function searchForm(evt) {
             backgroundColor: 'rgb(239, 64, 64)',
           });
         } else {
-          //clear
+          // clear
           imgList.innerHTML = '';
           imgList.insertAdjacentHTML('beforeend', createMarkup(res.hits));
         }
@@ -89,11 +88,14 @@ jsInput.addEventListener('input', function () {
 
 imgList.addEventListener('click', function (evt) {
   evt.preventDefault();
-  const gallerySimple = new SimpleLightbox('a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
-  gallerySimple.open();
+  const target = evt.target;
+  if (target.tagName === 'IMG') {
+    const gallerySimple = new SimpleLightbox('a', {
+      captionsData: 'alt',
+      captionDelay: 250,
+    });
+    gallerySimple.open();
+  }
 });
 
 // imgList.addEventListener('load', addLoader);
