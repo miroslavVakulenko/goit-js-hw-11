@@ -5,7 +5,11 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 import { fetchImg } from './js/pixabay-api';
-import simpleLightbox from 'simplelightbox';
+
+const gallerySimple = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 
 // fetchImg()
 //   .then(res => console.log(res))
@@ -43,6 +47,7 @@ function searchForm(evt) {
           //clear
           imgList.innerHTML = '';
           imgList.insertAdjacentHTML('beforeend', createMarkup(res.hits));
+          gallerySimple.refresh();
         }
       })
       .catch(err => console.log(err))
@@ -89,14 +94,4 @@ jsInput.addEventListener('input', function () {
 
 imgList.addEventListener('click', function (evt) {
   evt.preventDefault();
-  const gallerySimple = new SimpleLightbox('a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
-  gallerySimple.open();
 });
-
-// imgList.addEventListener('load', addLoader);
-// function addLoader() {
-//   loader.classList.add('loader');
-// }
